@@ -1,0 +1,150 @@
+import javax.swing.JOptionPane;
+
+public class MontaCalculo2 {
+	private static StringBuffer expressao = new StringBuffer();
+	private static boolean numero = true;
+
+	private static StringBuffer operando = new StringBuffer();
+	private static String operacao;
+	private static String digito;
+	private static Double resultado;
+
+	public static boolean isNumero() {
+		return numero;
+	}
+
+	public static void coletaOperando(){
+		if ( ! numero )
+			numero = true;
+		System.out.println("Digito: "+digito);
+		operando.append(digito);
+		expressao.append(digito);
+	}
+	
+	public static void montaExpressao(){
+		/** Criada essa condição para não deixar dois sinais de operações seguidos */
+		if ( ! numero ) {
+			int pos = expressao.lastIndexOf(" ", expressao.length() - 2);
+			if ( pos != -1 )
+				expressao.delete( pos, expressao.length() );
+//			expressao.delete(expressao.length() - 3, expressao.length());
+		}
+
+		/** Adiciona o zero antes de qualquer conta */
+		if ( expressao.toString().isEmpty() )
+			expressao.append("0");
+
+		/** Adiciona espaço antes e depois para poder separar numeros e operação depois */
+		expressao.append(" ").append(operacao).append(" ");
+		operando = new StringBuffer("");
+		numero = false;
+
+	}
+	
+	public static void limpar(){
+		operando = new StringBuffer();
+		expressao = new StringBuffer();
+		digito = "";
+		operacao = "";
+		numero = true;
+	}
+	
+	public static void limparUltimo (){
+		if ( ! expressao.toString().isEmpty() ) {
+			int pos = expressao.lastIndexOf(" ", expressao.length() - 2);
+			if ( ! numero && pos != -1) {
+				expressao.delete( pos, expressao.length() );
+			} else {
+				if ( numero )
+					operando.delete( operando.length() - 1, operando.length() );
+				expressao.delete( expressao.length() - 1, expressao.length() );
+			}
+		}
+		digito = "";
+		operacao = "";
+	}
+	
+	public static void efetuaCalculo() {
+		//Aluno aqui
+
+		EfetuaCalculo calc1 = new EfetuaCalculo();
+		String[] vet = expressao.toString().split(" ");
+		Double num1 = null;
+		String num2 = null, ope = null;
+		for (int i = 0; i < vet.length; i++) {
+			String s = vet[i];
+			if ( num1 == null )
+				num1 = Double.parseDouble(s);
+			else if ( ope == null )
+				ope = s;
+			else if ( num2 == null )
+				num2 = s;
+			if ( num1 != null && ope != null && ( num2 != null || i + 1 >= vet.length ) ) {
+				switch ( ope ) {
+				case "+":
+					num1 = calc1.Somar( num1, Double.parseDouble(num2) );
+					break;
+				case "-":
+					num1 = calc1.Subtrair(num1, Double.parseDouble(num2));
+					break;
+				case "*":
+					num1 = calc1.Mult(num1, Double.parseDouble(num2));
+					break;
+				case "/":
+					if (Double.parseDouble(num2) == 0) {
+						JOptionPane.showMessageDialog(null, "Não é possível dividir por zero!");
+					} else {
+						num1 = calc1.Dividir(num1, Double.parseDouble(num2));
+					}
+					break;
+				case "^":
+					num1 = calc1.Pot(num1, Double.parseDouble(num2));
+					break;
+				case "Raiz":
+					num1 = calc1.Raiz(num1, num2 == null ? 2.0d : Double.parseDouble(num2));
+					break;
+				case "Log":
+					num1 = calc1.logb(num1, num2 == null ? 10.0d : Double.parseDouble(num2));
+					break;
+//				case "C":
+//					calc1.Limpar();
+//					break;
+				}
+				num2 = null;
+				ope = null;
+			}
+		}
+		resultado = num1 != null ? num1 : 0;
+	}
+	
+	public static StringBuffer getOperando() {
+		return operando;
+	}
+	public static void setOperando(StringBuffer operando) {
+		MontaCalculo2.operando = operando;
+	}
+	public static StringBuffer getExpressao() {
+		return expressao;
+	}
+	public static void setExpressao(StringBuffer expressao) {
+		MontaCalculo2.expressao = expressao;
+	}
+	public static String getOperacao() {
+		return operacao;
+	}
+	public static void setOperacao(String operacao) {
+		MontaCalculo2.operacao = operacao;
+	}
+	public static String getDigito() {
+		return digito;
+	}
+	public static void setDigito(String digito) {
+		MontaCalculo2.digito = digito;
+	}
+	public static Double getResultado() {
+		return resultado;
+	}
+	public static void setResultado(Double resultado) {
+		MontaCalculo2.resultado = resultado;
+	}
+}

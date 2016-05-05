@@ -1,0 +1,9 @@
+codeGeneration.deduceSettings=false
+codeGeneration.statementId=org.eclipse.wb.core.model.statement.lazy
+codeGeneration.variableId=org.eclipse.wb.core.model.variable.lazy
+eclipse.preferences.version=1
+variable.fieldInitializer.fieldModifier=2
+variable.fieldInitializer.prefixThis=true
+variable.fieldUnique.fieldModifier=2
+variable.fieldUnique.prefixThis=true
+variable.lazy.methodModifier=2

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move 5 elements to &apos;Calculadora/src/calc&apos;&#x0D;&#x0A;- Original project: &apos;Calculadora&apos;&#x0D;&#x0A;- Destination element: &apos;Calculadora/src/calc&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     Calculadora.java&#x0D;&#x0A;     MontaCalculo.java&#x0D;&#x0A;     EfetuaCalculo.java&#x0D;&#x0A;     MontaCalculo2.java&#x0D;&#x0A;     TestePrincipal.java&#x0D;&#x0A;- Update references to refactored element" description="Move compilation units" destination="/src&lt;calc" element1="/src&lt;{Calculadora.java" element2="/src&lt;{MontaCalculo.java" element3="/src&lt;{EfetuaCalculo.java" element4="/src&lt;{MontaCalculo2.java" element5="/src&lt;{TestePrincipal.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1462472169965" units="5" version="1.0"/>
+</session>
